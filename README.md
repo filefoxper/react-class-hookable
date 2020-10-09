@@ -23,6 +23,9 @@ npm install --save react-class-hookable
 ```
 
 # usage
+
+[view example](https://github.com/filefoxper/react-class-hookable/tree/master/example/basic)
+
 ```typescript jsx
 import React,{Component,useState,useCallback} from 'react';
 import {hookable} from 'react-class-hookable';
