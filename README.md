@@ -6,6 +6,10 @@
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
+###### changes
+
+1.add support for arrow function formula `render`
+
 # problem
 
 Make react class component hook-able. Sometimes, transforming class component to a functional component is not a easy work,
@@ -85,7 +89,3 @@ It is simple, you can use any hooks which is also using in your functional compo
 
 You should know it is not recommended to use hooks in the old class component. 
 This usage is only temporary, so you'd better add an annotation like `//todo trans to functional component in future`.
-  
-
-
-
