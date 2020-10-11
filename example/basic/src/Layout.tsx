@@ -2,6 +2,27 @@ import React, {Component, useCallback, useEffect, useState} from 'react';
 import {Button} from "antd";
 import hookable from "react-class-hookable";
 
+class ArrowRender extends Component{
+
+    render=()=>{
+
+        const [count,setCount]=useState(0);
+
+        const handleCount=useCallback(()=>{
+            setCount(c=>c+1);
+        },[]);
+
+        return (
+            <div>
+                <Button onClick={handleCount}>arrow: {count}</Button>
+            </div>
+        );
+    }
+
+}
+
+const Arrow=hookable(ArrowRender);
+
 class Layout extends Component<any,{count:number}>{
 
     state={count:0};
@@ -36,6 +57,7 @@ class Layout extends Component<any,{count:number}>{
                     <Button onClick={handleHookCountAdd}>use hook handler</Button>
                     <span>hook count: {hookCount}</span>
                 </div>
+                <Arrow/>
             </div>
         );
     }
