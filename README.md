@@ -50,6 +50,17 @@ class ComplexComponent extends Component{
         this.setState({...});
     };
     
+    complexRender=()=>{
+        const [count,setCount] = useState(0);
+                
+        const handleAddCount = useCallback(()=>{
+            setCount((c)=>c+1);
+        },[]);
+        return (
+            <button onClick={handleAddCount}>function render:{count}</button>
+        );
+    };
+    
     render(){
         const state = this.state;
         const props = this.props;
@@ -64,7 +75,7 @@ class ComplexComponent extends Component{
             <div>
               <button onClick={handleAddCount}>hook count: {count}</button>
               <button onClick={this.handleEvent}>run event</button>
-              {/* complex ... */}
+              {this.complexRender()}
             </div>
         );
     }
@@ -84,6 +95,23 @@ export default class ComplexComponent extends Component{
 }
 ```
 It is simple, you can use any hooks which is also using in your functional component now.
+
+# api
+
+#### hookable
+```typescript jsx
+function hookable<P = {}, S = ComponentState>(
+    SourceClass: ComponentClass<P, S>,
+    hasOwnRenderProp?:boolean
+): ComponentClass<P, S>
+```
+`hookable` has an optional param `hasOwnRenderProp`, if you want the `render` function in component own props always invokes,
+you can set it a `true` value. If not `hookable` will auto select the `render` function. 
+
+(
+`hookable` auto select will find out a `render` function in the prototype of your component class first,
+if exist, it will use it, if not it will use the own property `render` function or throw an unavailable exception
+)
 
 # before using
 

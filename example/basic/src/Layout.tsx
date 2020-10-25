@@ -4,6 +4,16 @@ import hookable from "react-class-hookable";
 
 class ArrowRender extends Component{
 
+    renderButton=()=>{
+        const [count,setCount]=useState(0);
+
+        const handleCount=useCallback(()=>{
+            setCount(c=>c+1);
+        },[]);
+
+        return <Button onClick={handleCount}>render function: {count}</Button>
+    };
+
     render=()=>{
 
         const [count,setCount]=useState(0);
@@ -15,6 +25,7 @@ class ArrowRender extends Component{
         return (
             <div>
                 <Button onClick={handleCount}>arrow: {count}</Button>
+                {this.renderButton()}
             </div>
         );
     }
