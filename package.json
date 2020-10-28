@@ -1,6 +1,6 @@
 {
   "name": "react-class-hookable",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "./index.js",
   "author": "Jimmy.Harding",
   "description": "the purpose of this project is helping people use react hooks in class component",
@@ -24,7 +24,8 @@
     "component",
     "hook in class component",
     "typescript",
-    "browser"
+    "browser",
+    "front-end"
   ],
   "license": "MIT",
   "peerDependencies": {

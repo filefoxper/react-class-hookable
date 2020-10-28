@@ -21,7 +21,7 @@ export default function hookable<P = {}, S = ComponentState>(SourceClass: Compon
                     throw new Error('The hookable HOC only can be used on a class component which has a render method.');
                 }
                 const ProxyFunctionalCompo: FunctionComponent = () => {
-                    return sourceRender() as ReactElement<any> | null;
+                    return sourceRender.call(this) as ReactElement<any> | null;
                 };
                 this.render = () => {
                     return createElement(ProxyFunctionalCompo);
