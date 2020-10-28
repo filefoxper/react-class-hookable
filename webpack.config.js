@@ -62,27 +62,7 @@ function entry() {
                         {
                             loader: 'babel-loader',
                             options: {
-                                cacheDirectory: true,
-                                plugins: [
-                                    ["@babel/plugin-transform-runtime"],
-                                    ['@babel/plugin-proposal-export-namespace-from'],
-                                    [
-                                        '@babel/plugin-proposal-class-properties',
-                                        {loose: true},
-                                    ]
-                                ],
-                                presets: [
-                                    [
-                                        '@babel/preset-env',
-                                        {
-                                            modules: false,
-                                            targets: {
-                                                "browsers": ["last 2 versions", "ie >=9"]
-                                            }
-                                        }
-                                    ],
-                                    '@babel/preset-react'
-                                ]
+                                cacheDirectory: true
                             }
                         },
                         "ts-loader"
