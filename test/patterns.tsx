@@ -196,6 +196,28 @@ class WithoutRender_ extends Component{
 
 const WithoutRender=hookable(WithoutRender_);
 
+class OwnRenderPropNotArrowCallback_ extends Component<any>{
+
+    constructor(props:any){
+        super(props);
+        this.render=function () {
+
+            const [mounted,setMounted]=useState(false);
+
+            useEffect(()=>{
+                setMounted(true);
+            },[]);
+
+            return (
+                <div>{mounted?'mounted':'unmounted'}</div>
+            )
+        }
+    }
+
+}
+
+const OwnRenderPropNotArrowCallback=hookable(OwnRenderPropNotArrowCallback_);
+
 export {
     OnlyHooks,
     LifeCycleAndHooks,
@@ -203,5 +225,6 @@ export {
     OwnRenderPropHooks,
     ExtendsSelfDefinedComponent,
     HasOwnRendPropExtendsSelfDefinedComponent,
-    WithoutRender
+    WithoutRender,
+    OwnRenderPropNotArrowCallback
 }

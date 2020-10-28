@@ -7,7 +7,8 @@ import {
     OwnRenderPropHooks,
     ExtendsSelfDefinedComponent,
     HasOwnRendPropExtendsSelfDefinedComponent,
-    WithoutRender
+    WithoutRender,
+    OwnRenderPropNotArrowCallback
 } from "./patterns";
 
 describe('test only hooks', () => {
@@ -105,6 +106,16 @@ describe('test component without render method',()=>{
 
     test('hookable on no render component',()=>{
         expect(()=>render(<WithoutRender/>)).toThrow();
+    });
+
+});
+
+describe('test render is own prop but not arrow callback',()=>{
+
+    test('hookable on component which render is own prop but not arrow callback',()=>{
+        const {container}=render(<OwnRenderPropNotArrowCallback/>);
+        const mountedText=container.getElementsByTagName('div')[0].innerHTML;
+        expect(mountedText).toBe('mounted');
     });
 
 });
