@@ -1,7 +1,8 @@
 import React, {Component, useCallback, useEffect, useState} from 'react';
 import {Button} from "antd";
-import hookable from "react-class-hookable";
+import hookable,{hookDecorator} from "react-class-hookable";
 
+@hookDecorator()
 class ArrowRender extends Component{
 
     renderButton=()=>{
@@ -31,8 +32,6 @@ class ArrowRender extends Component{
     }
 
 }
-
-const Arrow=hookable(ArrowRender);
 
 class Layout extends Component<any,{count:number}>{
 
@@ -68,7 +67,7 @@ class Layout extends Component<any,{count:number}>{
                     <Button onClick={handleHookCountAdd}>use hook handler</Button>
                     <span>hook count: {hookCount}</span>
                 </div>
-                <Arrow/>
+                <ArrowRender/>
             </div>
         );
     }
