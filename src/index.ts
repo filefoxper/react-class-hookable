@@ -1,17 +1,20 @@
 import {
     Component,
     ComponentClass,
-    ComponentState,
+    ComponentState, ComponentType,
     createElement,
     FunctionComponent,
     PureComponent,
     ReactElement
 } from "react";
 
-export default function hookable<P = {}, S = ComponentState>(SourceClass: ComponentClass<P, S>,hasOwnRenderProp?:boolean): ComponentClass<P, S> {
+type HookableCurryingCallback<P = {}, S = ComponentState> = (SourceClass: ComponentClass<P,S>) => ComponentClass<P,S>;
+
+function hookable<P = {}, S = ComponentState>(SourceClass: ComponentClass<P, S>, hasOwnRenderProp?: boolean): ComponentClass<P, S> {
+
     const sourceRender = SourceClass.prototype.render;
 
-    if (!sourceRender||hasOwnRenderProp) {
+    if (!sourceRender || hasOwnRenderProp) {
         class ProxyComponent extends SourceClass {
 
             constructor(props: P, context?: any) {
@@ -44,3 +47,17 @@ export default function hookable<P = {}, S = ComponentState>(SourceClass: Compon
     return SourceClass;
 
 }
+
+function currying(hasOwnRenderProp?: boolean):HookableCurryingCallback {
+    return function <P = {}, S = ComponentState>(SourceClass: ComponentClass<P,S>) {
+        return hookable<P, S>(SourceClass, hasOwnRenderProp);
+    }
+}
+
+export function hookDecorator(hasOwnRenderProp?: boolean):Function{
+    return currying(hasOwnRenderProp);
+}
+
+hookable.currying = currying;
+
+export default hookable;

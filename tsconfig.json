@@ -6,6 +6,8 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "importHelpers": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "jsx": "react",
     "baseUrl": ".",
     "outDir": ".",

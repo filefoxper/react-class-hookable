@@ -6,10 +6,6 @@
 [standard-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [standard-url]: http://npm.im/standard
 
-###### changes
-
-1.add support for arrow function formula `render`
-
 # problem
 
 Make react class component hook-able. Sometimes, transforming class component to a functional component is not a easy work,
@@ -32,7 +28,7 @@ npm install --save react-class-hookable
 
 ```typescript jsx
 import React,{Component,useState,useCallback} from 'react';
-import {hookable} from 'react-class-hookable';
+import hookable from 'react-class-hookable';
 
 class ComplexComponent extends Component{
     
@@ -87,9 +83,9 @@ export default hookable(ComplexComponent);
 If you are using decorator, it can be more easy.
 ```typescript jsx
 import React,{Component,useState,useCallback} from 'react';
-import {hookable} from 'react-class-hookable';
+import {hookDecorator} from 'react-class-hookable';
 
-@hookable
+@hookDecorator()
 export default class ComplexComponent extends Component{
     //......
 }
@@ -100,7 +96,7 @@ It is simple, you can use any hooks which is also using in your functional compo
 
 #### hookable
 ```typescript jsx
-function hookable<P = {}, S = ComponentState>(
+export default function hookable<P = {}, S = ComponentState>(
     SourceClass: ComponentClass<P, S>,
     hasOwnRenderProp?:boolean
 ): ComponentClass<P, S>
@@ -113,6 +109,31 @@ you can set it a `true` value. If not `hookable` will auto select the `render` f
 if exist, it will use it, if not it will use the own property `render` function or throw an unavailable exception
 )
 
+#### hookable.currying
+```typescript jsx
+type HookableCurryingCallback<P = {}, S = ComponentState> = (SourceClass: ComponentClass<P,S>) => ComponentClass<P,S>;
+
+function currying(hasOwnRenderProp?: boolean):HookableCurryingCallback
+```
+This is the currying function for `hookable`, you can use `hasOwnRenderProp config` to create a factory
+`hookable` function.
+#### hookDecorator
+```typescript jsx
+export function hookDecorator(hasOwnRenderProp?: boolean):Function
+```
+
+usage
+
+```typescript jsx
+import React,{Component} from 'react';
+import {hookDecorator} from 'react-class-hookable';
+
+@hookDecorator
+class Comp extends Component{
+    
+}
+```
+If you are using typescript, you may find `incompatible warnings`, so here is a new decorator function for you.
 # before using
 
 You should know it is not recommended to use hooks in the old class component. 

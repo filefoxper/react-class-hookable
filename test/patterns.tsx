@@ -1,5 +1,5 @@
-import React, {ChangeEvent, Component, RefObject, useCallback, useEffect, useRef, useState} from "react";
-import hookable from "../src";
+import React, {ChangeEvent, Component, PureComponent, RefObject, useCallback, useEffect, useRef, useState} from "react";
+import hookable, {hookDecorator} from "../src";
 
 //self-defined hook : +2
 const useEvenCount = (initial: number): [number, () => any] => {
@@ -81,7 +81,8 @@ class LifeCycleAndHooks_ extends Component<any, { mounted: boolean }> {
 
 const LifeCycleAndHooks = hookable(LifeCycleAndHooks_);
 
-class LifeCycleMixinHooks_ extends Component<any, { text: string }> {
+@hookDecorator()
+class LifeCycleMixinHooks extends PureComponent<any, { text: string }> {
 
     state = {text: ''};
 
@@ -122,8 +123,6 @@ class LifeCycleMixinHooks_ extends Component<any, { text: string }> {
     }
 
 }
-
-const LifeCycleMixinHooks = hookable(LifeCycleMixinHooks_);
 
 class OwnRenderPropHooks_ extends Component<any, { mounted: boolean }> {
 
