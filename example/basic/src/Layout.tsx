@@ -1,8 +1,8 @@
 import React, {Component, useCallback, useEffect, useState} from 'react';
 import {Button} from "antd";
-import hookable,{hookDecorator} from "react-class-hookable";
+import hookable,{hookDecorator,withHookable} from "react-class-hookable";
 
-@hookDecorator()
+@withHookable()
 class ArrowRender extends Component{
 
     renderButton=()=>{
