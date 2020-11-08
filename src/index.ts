@@ -54,10 +54,24 @@ function currying(hasOwnRenderProp?: boolean):HookableCurryingCallback {
     }
 }
 
-export function hookDecorator(hasOwnRenderProp?: boolean):Function{
-    return currying(hasOwnRenderProp);
-}
-
 hookable.currying = currying;
 
 export default hookable;
+
+/**
+ * @deprecated
+ * @param hasOwnRenderProp
+ */
+function hookDecorator(hasOwnRenderProp?: boolean):Function{
+    return currying(hasOwnRenderProp);
+}
+
+function withHookable(hasOwnRenderProp?: boolean):Function {
+    return currying(hasOwnRenderProp);
+}
+
+export {
+    hookDecorator,
+    withHookable,
+    withHookable as hookable
+}

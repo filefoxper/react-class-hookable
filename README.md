@@ -83,9 +83,9 @@ export default hookable(ComplexComponent);
 If you are using decorator, it can be more easy.
 ```typescript jsx
 import React,{Component,useState,useCallback} from 'react';
-import {hookDecorator} from 'react-class-hookable';
+import {withHookable} from 'react-class-hookable';
 
-@hookDecorator()
+@withHookable()
 export default class ComplexComponent extends Component{
     //......
 }
@@ -117,23 +117,28 @@ function currying(hasOwnRenderProp?: boolean):HookableCurryingCallback
 ```
 This is the currying function for `hookable`, you can use `hasOwnRenderProp config` to create a factory
 `hookable` function.
-#### hookDecorator
+###### ~~hookDecorator~~ (deprecated)
+
+`hookDecorator` is deprecated, but still works, we recommend you to use `withHookable`.
+
+#### withHookable
 ```typescript jsx
-export function hookDecorator(hasOwnRenderProp?: boolean):Function
+export function withHookable(hasOwnRenderProp?: boolean):Function
 ```
 
 usage
 
 ```typescript jsx
 import React,{Component} from 'react';
-import {hookDecorator} from 'react-class-hookable';
+import {withHookable} from 'react-class-hookable';
 
-@hookDecorator
+@withHookable
 class Comp extends Component{
     
 }
 ```
 If you are using typescript, you may find `incompatible warnings`, so here is a new decorator function for you.
+
 # before using
 
 You should know it is not recommended to use hooks in the old class component. 
